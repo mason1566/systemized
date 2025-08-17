@@ -14,6 +14,11 @@ void MidiSender::openPort(int id)
     midi_out.open_port(getOutputPorts()[id]);
 }
 
+void MidiSender::openPort(libremidi::output_port port)
+{
+    midi_out.open_port(port);
+}
+
 std::vector<libremidi::output_port> MidiSender::getOutputPorts()
 {
     return getMidiObserver().get_output_ports();

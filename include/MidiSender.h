@@ -5,10 +5,11 @@
 
 #include <vector>
 
-struct MidiSender : protected MidiBase {
+struct MidiSender : public MidiBase {
     libremidi::midi_out midi_out;
     MidiSender();
     void openPort(int id);
+    void openPort(libremidi::output_port port);
     static std::vector<libremidi::output_port> getOutputPorts();
     static size_t getOutputPortCount();
 };
