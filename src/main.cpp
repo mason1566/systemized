@@ -8,8 +8,11 @@ int main()
     ConsoleInput::clearConsole();
 
     char input;
-    std::cout << "Enter a character: ";
-    input = ConsoleInput::getLetterOrDigitFromUser();
-    std::cout << input << "\n";
+    while (true)
+    {
+        std::cout << "Enter a character: ";
+        input = ConsoleInput::getLetterOrDigitFromUser();
+        std::cout << input << "\n";
+    }
     return 0;
 }

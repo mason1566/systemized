@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # add_executable(${PROJECT_NAME} src/main.cpp )
 
+add_subdirectory(libraries/libremidi)
+
 # Include all headers in include/ automatically
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
@@ -14,3 +16,5 @@ file(GLOB_RECURSE ALL_SOURCES "src/*.cpp")
 
 # Create executable from all sources
 add_executable(${PROJECT_NAME} ${ALL_SOURCES})
+
+target_link_libraries(${PROJECT_NAME} PRIVATE libremidi)
