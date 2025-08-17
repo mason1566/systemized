@@ -3,14 +3,14 @@
 
 #include "MidiBase.h"
 
-class MidiSender : protected MidiBase {
-public:
-    // Singleton instance function
-    static MidiSender& instance();
-private:
-    libremidi::midi_out midi_out;
+#include <vector>
 
+struct MidiSender : protected MidiBase {
+    libremidi::midi_out midi_out;
     MidiSender();
+    void openPort(int id);
+    static std::vector<libremidi::output_port> getOutputPorts();
+    static size_t getOutputPortCount();
 };
 
 #endif

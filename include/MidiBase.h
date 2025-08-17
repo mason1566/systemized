@@ -2,9 +2,10 @@
 #define MIDI_BASE
 
 #include <libremidi/libremidi.hpp>
+#include <vector>
 
-class MidiBase {
-public:
+struct MidiBase {
+protected:
     static libremidi::observer& getMidiObserver()
     {
         static libremidi::observer observer;

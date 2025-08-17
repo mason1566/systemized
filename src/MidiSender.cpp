@@ -2,13 +2,26 @@
 
 #include <iostream>
 
-MidiSender& MidiSender::instance() {
-    static MidiSender instance;
-    return instance;
+MidiSender::MidiSender() {
+    // midi_out.open_port(getMidiObserver().get_output_ports()[0]);
 }
 
-MidiSender::MidiSender() {
-    midi_out.open_port(getMidiObserver().get_output_ports()[0]);
+void MidiSender::openPort(int id)
+{
+    if (id < 0 || id >= getOutputPortCount())
+        return;
+    
+    midi_out.open_port(getOutputPorts()[id]);
+}
+
+std::vector<libremidi::output_port> MidiSender::getOutputPorts()
+{
+    return getMidiObserver().get_output_ports();
+}
+
+size_t MidiSender::getOutputPortCount()
+{
+    return getMidiObserver().get_output_ports().size();
 }
 
 // void MidiSender::setPadRGB(int padNumber, RGB colour) {

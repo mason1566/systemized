@@ -4,18 +4,17 @@
 #include "MidiBase.h"
 
 #include <functional>
+#include <memory>
 
 // Singleton
 // Holds a callback: "std::function<void(const MidiMessage&)> onMessage;""
 // Called when MIDI is received.
-class MidiReceiver : protected MidiBase {
-public:
+struct MidiReceiver : protected MidiBase {
     std::unique_ptr<libremidi::midi_in> midi_in;
-
-    // Singleton instance function
-    static MidiReceiver& instance();
-private:
     MidiReceiver();
+    void openPort(int id);
+    static std::vector<libremidi::input_port> getInputPorts();
+    static size_t getInputPortCount();
 };
 
 #endif
