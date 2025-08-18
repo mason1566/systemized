@@ -19,7 +19,6 @@ MidiReceiver::MidiReceiver()
 void MidiReceiver::handleMidiCallback(const libremidi::message& message)
 {
     if (externalMidiCallback) {
-        std::cout << "MIDI Input Received! Calling externalMidiCallback!\n";
         externalMidiCallback(message);
     }
     else

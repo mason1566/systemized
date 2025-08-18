@@ -3,6 +3,7 @@
 #include "ConsoleUtils.h"
 #include "MidiReceiver.h"
 #include "MidiSender.h"
+#include "AudioIO.h"
 
 int main() 
 {
@@ -36,6 +37,13 @@ int main()
         }
 
         midiReceive.openPort(0);
+
+        auto callback = [](const libremidi::message& message) 
+        {  
+            std::cout << message.timestamp << "\n";
+        };
+
+        midiReceive.setMidiCallbackFunction(callback);
     }
 
     std::cout << "\n";
@@ -56,6 +64,9 @@ int main()
 
         midiSend.openPort(0);
     }
+
+    AudioIO& audio { AudioIO::getInstance() };
+    audio.printDevices();
 
     std::cin.get();
 
