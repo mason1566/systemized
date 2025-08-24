@@ -39,6 +39,12 @@ AudioIO::AudioIO()
     }
 }
 
+AudioIO::~AudioIO()
+{
+    ma_context_uninit(&getContext());
+}
+
+
 void AudioIO::printDevices()
 {
     ma_device_info* pPlaybackInfos;

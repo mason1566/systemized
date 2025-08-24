@@ -4,6 +4,8 @@
 #include <iostream>
 #include <termios.h>
 #include <unistd.h>
+#include <vector>
+#include <string>
 
 struct TerminalRawMode 
 {
@@ -21,6 +23,7 @@ struct ConsoleInput
     static char getLetterFromUser();
     static char getLetterOrDigitFromUser();
     static void clearConsole();
+    static int getSelectionFromUser(std::vector<std::string>& options);
 };
 
 // // From chatgpt

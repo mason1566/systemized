@@ -11,6 +11,7 @@ public:
 private:
     static ma_context& getContext();
     AudioIO();
+    ~AudioIO();
 };
 
 #endif

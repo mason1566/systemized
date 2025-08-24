@@ -68,6 +68,10 @@ int main()
     AudioIO& audio { AudioIO::getInstance() };
     audio.printDevices();
 
+    std::vector<std::string> strings { "Hello", "Hi", "Howdily Doodily", "1", "2", "3", "4", "5", "6", "7", "8", "9", "i", "need", "more", "entries", "to", "test", "this", "dang", "thing" };
+    int selection = ConsoleInput::getSelectionFromUser(strings);
+    std::cout << strings[selection] << "\n";
+
     std::cin.get();
 
     return 0;
