@@ -43,7 +43,7 @@ void ConsoleInput::clearConsole() {
     std::cout << "\033[2J\033[H";
 }
 
-int ConsoleInput::getSelectionFromUser(std::vector<std::string>& options)
+int ConsoleInput::getSelectionFromUser(const std::vector<std::string>& options)
 {
     const int MIN_DIGIT { 0 };
     const int MAX_DIGIT { 9 };

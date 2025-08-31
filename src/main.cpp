@@ -1,23 +1,55 @@
 #include <iostream>
 #include <format>
+#include <vector>
 #include "ConsoleUtils.h"
 #include "MidiReceiver.h"
 #include "MidiSender.h"
 #include "AudioIO.h"
+
+enum class AudioCommand
+{
+
+};
+
+struct UserCommand
+{
+    enum Command : int { Placeholder } test;
+
+    void executeCommand()
+    {
+        switch (test)
+        {
+            case Command::Placeholder:
+                placeholder();
+                break;
+            default:
+                break;
+        }
+    }
+
+    std::string toString()
+    {
+        int commandIndex { static_cast<int>(Command::Placeholder) };
+        return getCommandStrings()[commandIndex];
+    }
+
+    static const std::vector<std::string>& getCommandStrings()
+    {
+        static const std::vector<std::string> commandStrings { "Placeholder" };
+        return commandStrings;
+    }
+private:
+    static void placeholder()
+    {
+        std::cout << "Placeholder\n";
+    }
+};
 
 int main() 
 {
     TerminalRawMode rawMode;
 
     ConsoleInput::clearConsole();
-
-    // char input;
-    // while (true)
-    // {
-    //     std::cout << "Enter a character: ";
-    //     input = ConsoleInput::getLetterOrDigitFromUser();
-    //     std::cout << input << "\n";
-    // }
 
     MidiReceiver midiReceive;
     MidiSender midiSend;
@@ -68,9 +100,15 @@ int main()
     AudioIO& audio { AudioIO::getInstance() };
     audio.printDevices();
 
-    std::vector<std::string> strings { "Hello", "Hi", "Howdily Doodily", "1", "2", "3", "4", "5", "6", "7", "8", "9", "i", "need", "more", "entries", "to", "test", "this", "dang", "thing" };
-    int selection = ConsoleInput::getSelectionFromUser(strings);
-    std::cout << strings[selection] << "\n";
+    // std::vector<std::string> strings { "Hello", "Hi", "Howdily Doodily", "1", "2", "3", "4", "5", "6", "7", "8", "9", "i", "need", "more", "entries", "to", "test", "this", "dang", "thing" };
+    // int selection = ConsoleInput::getSelectionFromUser(strings);
+    // std::cout << strings[selection] << "\n";
+
+    // int selection = ConsoleInput::getSelectionFromUser(UserCommand::getCommandStrings());
+    // std::cout << UserCommand::getCommandStrings()[selection] << "\n";
+    // UserCommand command;
+    // command.test = static_cast<UserCommand::Command>(selection);
+    // command.executeCommand();
 
     std::cin.get();
 

@@ -23,7 +23,7 @@ struct ConsoleInput
     static char getLetterFromUser();
     static char getLetterOrDigitFromUser();
     static void clearConsole();
-    static int getSelectionFromUser(std::vector<std::string>& options);
+    static int getSelectionFromUser(const std::vector<std::string>& options);
 };
 
 // // From chatgpt
