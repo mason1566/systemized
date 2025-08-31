@@ -2,8 +2,7 @@
 #include <format>
 #include <vector>
 #include "ConsoleUtils.h"
-#include "MidiReceiver.h"
-#include "MidiSender.h"
+#include "MidiIO.h"
 #include "AudioIO.h"
 
 enum class AudioCommand
